@@ -16,5 +16,16 @@ class TestModels(unittest.TestCase):
         magazine = Magazine(1, "Tech Weekly")
         self.assertEqual(magazine.name, "Tech Weekly")
 
+    def test_author_instance(self):
+        author = Author(1, 'Jane Doe')
+        assert author.id == 1
+        assert author.name == 'Jane Doe'
+
+    def test_author_save(self):
+        author = Author(name='John Doe')
+        author.save()
+        assert author.id is not None
+
+
 if __name__ == "__main__":
     unittest.main()

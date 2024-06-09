@@ -1,5 +1,11 @@
-from __init__ import CURSOR, CONN
+from models.__init__ import CURSOR, CONN
 
+CURSOR.execute('''
+        CREATE TABLE IF NOT EXISTS magazines (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            category TEXT NOT NULL)
+''')
 
 class Magazine:
     def __init__(self, id = None, name= None, category = None):
@@ -10,7 +16,6 @@ class Magazine:
     def __repr__(self):
         return f'<Magazine {self.name}>'
 
-    # from database.setup import create_tables
 
     @property
     def id(self):

@@ -1,16 +1,19 @@
-from __init__ import CURSOR, CONN
+from models.__init__ import CURSOR, CONN
 
+CURSOR.execute('''
+    CREATE TABLE IF NOT EXISTS authors (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT)
+''')
+        
 
 class Author:
     def __init__(self, id = None, name = None):
-        self.id = id
+        self._id = id
         self.name = name
 
-        
     def __repr__(self):
         return f'<Author {self.name}>'
-    
-    # from database.setup import create_tables
 
     @property
     def id(self):
@@ -34,6 +37,8 @@ class Author:
             raise AttributeError("Name cannot be changed after instantiation")
         
 
+
+        
     def articles(self):
         from models.article import Article
         sql = """
