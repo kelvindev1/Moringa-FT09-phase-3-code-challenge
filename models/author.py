@@ -1,17 +1,16 @@
-from database.connection import get_db_connection
-from models.__init__ import CURSOR, CONN
+from __init__ import CURSOR, CONN
 
 
 class Author:
     def __init__(self, id = None, name = None):
-        self.id = int(id)
-        self.name = str(name)
-        self.initialize_in_database()
+        self.id = id
+        self.name = name
 
         
     def __repr__(self):
         return f'<Author {self.name}>'
     
+    # from database.setup import create_tables
 
     @property
     def id(self):
@@ -33,22 +32,6 @@ class Author:
             self._name = value
         else:
             raise AttributeError("Name cannot be changed after instantiation")
-        
-    def initialize_in_database(self):
-        conn = get_db_connection()
-        cursor  = conn.cursor()
-        try:
-            query = """"
-            INSERT INTO magazines (id, name, category) Values (?, ?, ?)
-            """
-            cursor.execute(query, (self.id, self.name, self.category))
-            conn.commit()
-        except Exception as exc:
-            print(f"An error occured: ", exc)
-            conn.rollback()
-            conn.close()
-
-        
         
 
     def articles(self):

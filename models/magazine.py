@@ -1,28 +1,16 @@
-from models.__init__ import CURSOR, CONN
-from database.connection import get_db_connection
+from __init__ import CURSOR, CONN
+
 
 class Magazine:
     def __init__(self, id = None, name= None, category = None):
-        self.id = id
-        self.name = name
-        self.category = category
-        self.initialize_in_database()
+        self.id = int(id)
+        self.name = str(name)
+        self.category = str(category)
 
     def __repr__(self):
         return f'<Magazine {self.name}>'
-    
 
-    @staticmethod
-    def create(title, content, author_id, magazine_id):
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute(
-            'INSERT INTO articles (title, content, author_id, magazine_id) VALUES (?, ?, ?, ?)',
-            (title, content, author_id, magazine_id)
-        )
-        conn.commit()
-        conn.close()
-
+    # from database.setup import create_tables
 
     @property
     def id(self):
@@ -57,8 +45,6 @@ class Magazine:
                 raise ValueError("Category must be longer than 0 characters")
         else:
             raise TypeError("Category must be a string")
-        
-
 
 
     def articles(self):
@@ -146,8 +132,3 @@ class Magazine:
         rows = CURSOR.execute(sql).fetchall()
         return [cls.instance_from_db(row) for row in rows]
     
-
-
-
-magazine_example = Magazine(1, "Sample Magazine", "News")
-print(magazine_example)
