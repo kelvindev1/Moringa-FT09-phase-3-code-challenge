@@ -34,5 +34,10 @@ class TestModels(unittest.TestCase):
         assert article.author_id == 1
         assert article.magazine_id == 1
 
+    def test_save_new_magazine(self):
+        magazine = Magazine(name='New Mag', category='New Category')
+        magazine.save()
+        assert isinstance(magazine.id, int)
+
 if __name__ == "__main__":
     unittest.main()

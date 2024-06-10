@@ -9,7 +9,7 @@ CURSOR.execute('''
 
 class Magazine:
     def __init__(self, id = None, name= None, category = None):
-        self.id = int(id)
+        self._id = id
         self.name = str(name)
         self.category = str(category)
 
@@ -19,7 +19,7 @@ class Magazine:
 
     @property
     def id(self):
-        return self.__dict
+        return self._id
     @id.setter
     def id(self, value):
         if isinstance(value, int):
@@ -138,4 +138,41 @@ class Magazine:
         """
         rows = CURSOR.execute(sql).fetchall()
         return [cls.instance_from_db(row) for row in rows]
+    
+
+
+
+#     def test_update_existing_magazine(sample_magazine):
+#     sample_magazine.save()
+#     sample_magazine.name = 'Updated Mag'
+#     sample_magazine.save()
+#     assert sample_magazine.name == 'Updated Mag'
+
+# def test_delete_magazine(sample_magazine):
+#     sample_magazine.save()
+#     magazine_id = sample_magazine.id
+#     sample_magazine.delete()
+#     assert not Magazine.get_by_id(magazine_id)
+
+# def test_magazine_attributes(sample_magazine):
+#     assert sample_magazine.name == 'Sample Mag'
+#     assert sample_magazine.category == 'Sample Category'
+
+# def test_retrieve_magazines_by_category():
+#     # Create magazines with different categories
+#     Magazine(name='Magazine1', category='Category1').save()
+#     Magazine(name='Magazine2', category='Category2').save()
+    
+#     # Retrieve magazines by category
+#     magazines_category1 = Magazine.get_by_category('Category1')
+#     magazines_category2 = Magazine.get_by_category('Category2')
+    
+#     assert len(magazines_category1) == 1
+#     assert len(magazines_category2) == 1
+
+# def test_unique_constraints():
+#     # Try creating two magazines with the same name
+#     Magazine(name='Duplicate Mag', category='Category1').save()
+#     with pytest.raises(Exception):
+#         Magazine(name='Duplicate Mag', category='Category2').save()
     
