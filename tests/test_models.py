@@ -51,6 +51,11 @@ class TestModels(unittest.TestCase):
         magazine.save()
         assert isinstance(magazine.id, int)
 
+    def test_create_author(self):
+        author = Author(name='John Doe')
+        assert author.name == 'John Doe'
+        assert author.id is None
+
 
 
 if __name__ == "__main__":
