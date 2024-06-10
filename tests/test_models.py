@@ -56,6 +56,11 @@ class TestModels(unittest.TestCase):
         assert author.name == 'John Doe'
         assert author.id is None
 
+    def test_set_author_id(self):
+        author = Author(name='Jane Smith')
+        author.id = 1
+        assert author.id == 1
+
 
 
 if __name__ == "__main__":
