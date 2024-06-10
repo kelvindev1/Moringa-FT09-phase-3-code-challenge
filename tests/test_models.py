@@ -34,16 +34,24 @@ class TestModels(unittest.TestCase):
         assert article.author_id == 1
         assert article.magazine_id == 1
 
-    def test_save_new_magazine(self):
-        magazine = Magazine(name='New Mag', category='New Category')
-        magazine.save()
-        assert isinstance(magazine.id, int)
 
     def test_create_magazine(self):
         magazine = Magazine(name='Test Mag', category='Test Category')
         assert magazine.name == 'Test Mag'
         assert magazine.category == 'Test Category'
         assert magazine.id is None
+
+    def test_set_id(self):
+        magazine = Magazine(name='Test Mag', category='Test Category')
+        magazine.id = 1
+        assert magazine.id == 1
+
+    def test_save_new_magazine(self):
+        magazine = Magazine(name='New Mag', category='New Category')
+        magazine.save()
+        assert isinstance(magazine.id, int)
+
+
 
 if __name__ == "__main__":
     unittest.main()
