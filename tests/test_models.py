@@ -26,6 +26,13 @@ class TestModels(unittest.TestCase):
         author.save()
         assert author.id is not None
 
+    def test_article_instance(self):
+        article = Article(id=1, title='New Article', content='Article Content', author_id=1, magazine_id=1)
+        assert article.id == 1
+        assert article.title == 'New Article'
+        assert article.content == 'Article Content'
+        assert article.author_id == 1
+        assert article.magazine_id == 1
 
 if __name__ == "__main__":
     unittest.main()

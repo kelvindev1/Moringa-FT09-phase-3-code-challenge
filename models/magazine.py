@@ -26,6 +26,8 @@ class Magazine:
             self._id = value
         else:
             raise ValueError("ID must be of int type")
+        
+
 
     @property
     def name(self):
