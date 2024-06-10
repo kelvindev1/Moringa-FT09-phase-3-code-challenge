@@ -67,6 +67,16 @@ class TestModels(unittest.TestCase):
         assert isinstance(author.id, int)
 
 
+    def test_set_article_id(self):
+        article = Article(title='Another Article', content='Dolor sit amet', author_id=2, magazine_id=2)
+        article.id = 1
+        assert article.id == 1
+
+
+    def test_save_new_article(self):
+        article = Article(title='New Article', content='New content', author_id=3, magazine_id=3)
+        article.save()
+        assert isinstance(article.id, int)
 
 if __name__ == "__main__":
     unittest.main()

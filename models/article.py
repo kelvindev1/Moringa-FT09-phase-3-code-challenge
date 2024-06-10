@@ -14,7 +14,7 @@ CURSOR.execute('''
 
 class Article:
     def __init__(self, id = None, title = None, content = None, author_id = None, magazine_id = None):
-        self.id = id
+        self._id = id
         self.title = title
         self.content = content
         self.author_id = author_id
